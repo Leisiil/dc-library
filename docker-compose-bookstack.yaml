@@ -1,0 +1,36 @@
+version: '3.8' # Kann ausgelassen werden
+services:
+  bookstack:
+    image: lscr.io/linuxserver/bookstack:latest
+    container_name: bookstack
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+      - APP_URL=https://docs.nici-cloud.ch
+      - APP_KEY=base64:PtJDl2u3cd8QgyRBXMNlmr0PXk/VUBQu6uswwkIyC/U=
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_USERNAME=bookstack_user
+      - DB_PASSWORD=sH7t1Pdjw2QOc8M
+      - DB_DATABASE=bookstack_db
+      - QUEUE_CONNECTION=sync  # Optional
+    ports:
+      - 6875:80
+    volumes:
+      - /path/to/bookstack/config:/config
+    restart: unless-stopped
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    container_name: bookstack_db
+    environment:
+      - MYSQL_ROOT_PASSWORD=sH7t1Pdjw2QOc8M  # Root-Passwort für MySQL
+      - MYSQL_DATABASE=bookstack_db
+      - MYSQL_USER=bookstack_user
+      - MYSQL_PASSWORD=sH7t1Pdjw2QOc8M
+    volumes:
+      - /path/to/mysql/data/var/lib/mysql  # Hier werden die Daten von MySQL gespeichert
+    restart: unless-stopped

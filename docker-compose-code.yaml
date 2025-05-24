@@ -1,0 +1,19 @@
+services:
+  code-server:
+    image: lscr.io/linuxserver/code-server:latest
+    container_name: code-server
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - PASSWORD=jjwefowo48o344!39280hudekjw! #optional
+      - HASHED_PASSWORD= #optional
+      - SUDO_PASSWORD=jjwefowo48o344!39280hudekjw! #optional
+      - SUDO_PASSWORD_HASH= #optional
+      - PROXY_DOMAIN=code.nici-cloud.ch #optional
+      - DEFAULT_WORKSPACE=/config/workspace #optional
+    volumes:
+      - /path/to/code-server/config:/config
+    ports:
+      - 8443:8443
+    restart: unless-stopped

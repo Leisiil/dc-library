@@ -1,0 +1,11 @@
+version: '3'
+services:
+  navidrome:
+    image: deluan/navidrome:latest
+    container_name: navidrome
+    ports:
+      - "4533:4533"
+    volumes:
+      - ./music:/music
+      - ./config:/config
+    restart: always

@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  gotify:
+    container_name: gotify
+    hostname: gotify
+    image: gotify/server
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - net
+    ports:
+      - "8680:80"
+    volumes:
+      - data:/app/data
+    environment:
+      GOTIFY_DEFAULTUSER_PASS: admin
+
+  igotify:
+    container_name: igotify
+    hostname: igotify
+    image: ghcr.io/androidseb25/igotify-notification-assist:latest
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    pull_policy: always
+    networks:
+      - net
+    ports:
+      - "8681:8080"
+    volumes:
+      - api-data:/app/data
+    environment:                 # option environment see above note
+    - GOTIFY_URLS:"http://gotify"
+    - GOTIFY_CLIENT_TOKENS:"CGVaXg1qb-q9cuh"
+
+networks:
+  net:
+
+volumes:
+  data:
+  api-data:
