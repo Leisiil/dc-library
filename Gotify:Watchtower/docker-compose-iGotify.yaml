@@ -33,7 +33,7 @@ services:
       - api-data:/app/data
     environment:                 # option environment see above note
     - GOTIFY_URLS:"http://gotify"
-    - GOTIFY_CLIENT_TOKENS:"CGVaXg1qb-q9cuh"
+    - GOTIFY_CLIENT_TOKENS:"yourtoken"
 
 networks:
   net:
