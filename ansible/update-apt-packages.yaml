@@ -1,9 +1,9 @@
 ---
-- name: Run apt update on Debian-based systems
+- name: Update and upgrade packages on Ubuntu
   hosts: all
   become: true
   tasks:
-    - name: update apt package
-      apt:
-      upgrade: yes
-      update_cache: yes
+    - name: Update apt cache and upgrade all packages
+      ansible.builtin.apt:
+        update_cache: yes
+        upgrade: yes
