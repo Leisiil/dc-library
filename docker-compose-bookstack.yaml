@@ -7,7 +7,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Berlin
-      - APP_URL=https://docs.nici-cloud.ch
+      - APP_URL=https://test.test
       - APP_KEY=base64:PtJDl2u3cd8QgyRBXMNlmr0PXk/VUBQu6uswwkIyC/U=
       - DB_HOST=db
       - DB_PORT=3306
